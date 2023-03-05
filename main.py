@@ -41,4 +41,27 @@ def main():
     print_result_to_file(lines)
 
 
-main()
+def run_test():
+    cases = ('test_files/cases/input01.txt',
+             'test_files/cases/input02.txt',
+             'test_files/cases/input03.txt',
+             'test_files/cases/input04.txt',
+             'test_files/cases/input05.txt')
+
+    expected_results = ('test_files/expected_results/output01.txt',
+                        'test_files/expected_results/output02.txt',
+                        'test_files/expected_results/output03.txt',
+                        'test_files/expected_results/output04.txt',
+                        'test_files/expected_results/output05.txt')
+
+    for index in range(len(cases)):
+        lines = read_lines(cases[index])
+        replace_magnification_by_one(lines)
+        if not lines == read_lines(expected_results[index]):
+            print("An error occurred in the test №" + str(index))
+            return
+
+    main()
+
+
+run_test()

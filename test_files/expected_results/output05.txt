@@ -1,1 +1,45 @@
+using System;
 
+class Program
+{
+    static string Div(int a, int b, out int result)
+    {
+        if (b == 0)
+        {
+            result = int.MinValue;
+            return "Ошибка: Деление на ноль!";
+        }
+        else
+        {
+            result = a / b;
+            a = a + 1;
+            ++b;
+            return "";
+        }
+    }
+
+    static void PrintResult(string errorText, int res)
+    {
+        if (string.IsNullOrEmpty(errorText))
+        {
+            Console.WriteLine(res);
+        }
+        else
+        {
+            Console.WriteLine(errorText);
+        }
+    }
+
+    static void Main(string[] args)
+    {
+        int r1;
+        var err1 = Div(64, 8, out r1);
+        PrintResult(err1, r1);
+
+        //переменная r2 объявляется в списке аргументов
+        var err2 = Div(34, 0, out int r2);
+        PrintResult(err2, r2);
+
+        Console.ReadLine();
+    }
+}
