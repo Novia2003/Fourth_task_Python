@@ -13,10 +13,10 @@ def replace_magnification_by_one(lines):
         line = lines[line_index]
         index = line.find("++")
 
-        if index > 0 and line[index - 1] != " ":
+        while index > 0 and line[index - 1] != " ":
             line = lines.pop(line_index)
 
-            end_first_part = line.rfind(" ")
+            end_first_part = line.rfind(" ", 0, index)
             end_first_part += 1
 
             first_part = line[:end_first_part]
@@ -27,6 +27,9 @@ def replace_magnification_by_one(lines):
 
             line = first_part + variable + " = " + variable + " + 1" + last_part
             lines.insert(line_index, line)
+
+            first_symbol = index + 1
+            index = line.find("++", first_symbol)
 
 
 def print_result_to_file(lines):
